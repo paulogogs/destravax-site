@@ -485,3 +485,35 @@
     margin-bottom:8px;
   }
   .back-link:hover{ color:var(--paper); }
+
+  /* ---------- Hero: palavra que alterna ---------- */
+  #rotate-word{
+    display:inline-block;
+    transition:opacity 0.25s ease;
+  }
+  #rotate-word.fading{ opacity:0; }
+
+  /* ---------- Tuning: itens informativos (sem CTA) ---------- */
+  .tuning-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:32px;
+    margin-top:40px;
+  }
+  @media (max-width:780px){ .tuning-grid{ grid-template-columns:1fr; } }
+  .tuning-item{
+    border-top:2px solid var(--orange);
+    padding-top:16px;
+  }
+  .tuning-item h3{
+    font-family:var(--display);
+    font-size:1.08rem;
+    font-weight:600;
+    margin:0 0 8px;
+  }
+  .tuning-item p{
+    color:var(--paper-dim);
+    font-size:0.94rem;
+    line-height:1.55;
+    margin:0;
+  }
