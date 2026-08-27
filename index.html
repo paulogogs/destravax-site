@@ -66,6 +66,57 @@
   gtag('js', new Date());
   gtag('config', 'G-HQB9MCQGL4');
 </script>
+
+<!-- Cal.com embed: agendamento embutido no site (sem sair pro cal.com) -->
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", { origin: "https://cal.com" });
+
+  Cal("on", {
+    action: "bookingSuccessful",
+    callback: function (e) {
+      if (typeof gtag === "function") {
+        gtag("event", "agendamento_concluido", {
+          event_category: "booking",
+          event_label: (e.detail && e.detail.data && e.detail.data.eventType) ? e.detail.data.eventType.slug : "desconhecido"
+        });
+      }
+      window.location.href = "/agendamento-confirmado";
+    }
+  });
+
+  Cal("ui", {
+    styles: { branding: { brandColor: "#FF4A0A" } },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
+</script>
 </head>
 <body>
 
@@ -84,7 +135,7 @@
       <a href="#contato">Contato</a>
       <a href="/blog/">Blog</a>
     </nav>
-    <a class="nav-cta" href="https://cal.com/destravax" target="_blank" rel="noopener">Agendar diagnóstico</a>
+    <a class="nav-cta" href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico</a>
   </div>
 </header>
 
@@ -95,7 +146,7 @@
       <h1>Seu equipamento elétrico, <em id="rotate-word">diagnosticado</em> com precisão.</h1>
       <p class="lead">Patinetes, scooters, bicicletas, motos e monociclos elétricos. Identificamos a falha antes de qualquer orçamento — sem achismo, sem cobrar reparo que não existe.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="https://cal.com/destravax" target="_blank" rel="noopener">Agendar entrega do equipamento →</a>
+        <a class="btn-primary" href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar entrega do equipamento →</a>
         <a class="btn-secondary" href="#servicos">Ver preços por equipamento</a>
       </div>
     </div>
@@ -139,32 +190,32 @@
     <p class="block-lead">Cada categoria tem um valor próprio de diagnóstico, já considerando a complexidade típica do sistema elétrico. Escolha o seu equipamento para ver os horários disponíveis.</p>
 
     <div class="services" style="grid-template-columns: repeat(3, 1fr);">
-      <a class="svc-card" href="https://cal.com/destravax/diagnostico-patinete-eletrico" target="_blank" rel="noopener">
+      <a class="svc-card" href="javascript:void(0)" data-cal-link="destravax/diagnostico-patinete-eletrico" data-cal-config='{"layout":"month_view"}'>
         <span class="svc-name">Patinete Elétrico</span>
         <span class="svc-price">A partir de R$ 150</span>
         <span class="svc-arrow">Agendar →</span>
       </a>
-      <a class="svc-card" href="https://cal.com/destravax/diagnostico-scooter-eletrica" target="_blank" rel="noopener">
+      <a class="svc-card" href="javascript:void(0)" data-cal-link="destravax/diagnostico-scooter-eletrica" data-cal-config='{"layout":"month_view"}'>
         <span class="svc-name">Scooter Elétrica</span>
         <span class="svc-price">A partir de R$ 220</span>
         <span class="svc-arrow">Agendar →</span>
       </a>
-      <a class="svc-card" href="https://cal.com/destravax/diagnostico-bicicleta-eletrica" target="_blank" rel="noopener">
+      <a class="svc-card" href="javascript:void(0)" data-cal-link="destravax/diagnostico-bicicleta-eletrica" data-cal-config='{"layout":"month_view"}'>
         <span class="svc-name">Bicicleta Elétrica</span>
         <span class="svc-price">A partir de R$ 150</span>
         <span class="svc-arrow">Agendar →</span>
       </a>
-      <a class="svc-card" href="https://cal.com/destravax/diagnostico-monociclo-eletrico" target="_blank" rel="noopener">
+      <a class="svc-card" href="javascript:void(0)" data-cal-link="destravax/diagnostico-monociclo-eletrico" data-cal-config='{"layout":"month_view"}'>
         <span class="svc-name">Monociclo Elétrico</span>
         <span class="svc-price">A partir de R$ 150</span>
         <span class="svc-arrow">Agendar →</span>
       </a>
-      <a class="svc-card" href="https://cal.com/destravax/diagnostico-moto-eletrica" target="_blank" rel="noopener">
+      <a class="svc-card" href="javascript:void(0)" data-cal-link="destravax/diagnostico-moto-eletrica" data-cal-config='{"layout":"month_view"}'>
         <span class="svc-name">Moto Elétrica</span>
         <span class="svc-price">A partir de R$ 300</span>
         <span class="svc-arrow">Agendar →</span>
       </a>
-      <a class="svc-card" href="https://cal.com/destravax/diagnostico-bateria-litio" target="_blank" rel="noopener">
+      <a class="svc-card" href="javascript:void(0)" data-cal-link="destravax/diagnostico-bateria-litio" data-cal-config='{"layout":"month_view"}'>
         <span class="svc-name">Bateria de Lítio</span>
         <span class="svc-price">A partir de R$ 150</span>
         <span class="svc-arrow">Agendar →</span>
@@ -240,7 +291,7 @@
         </div>
         <div>
           <dt>Agendamento</dt>
-          <dd><a class="btn-primary" style="margin-top:6px" href="https://cal.com/destravax" target="_blank" rel="noopener">Ver horários disponíveis →</a></dd>
+          <dd><a class="btn-primary" style="margin-top:6px" href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Ver horários disponíveis →</a></dd>
         </div>
       </dl>
 
@@ -259,7 +310,7 @@
 <footer>
   <div class="wrap foot-row">
     <span>© 2026 DestravaX. Diagnóstico técnico para veículos elétricos.</span>
-    <a href="https://cal.com/destravax" target="_blank" rel="noopener">Agendar diagnóstico</a>
+    <a href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico</a>
   </div>
 </footer>
 
@@ -280,7 +331,6 @@
     }, 2400);
   }
 </script>
-
 
 <script>
   (function(){
