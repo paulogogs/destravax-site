@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — DestravaX</title>
+<link rel="canonical" href="https://destravax.com/blog/">
+<meta name="description" content="Dicas técnicas e causas comuns de problemas em patinetes, scooters, bicicletas e outros veículos elétricos. Escrito pela equipe da DestravaX.">
+<meta property="og:title" content="Blog — DestravaX">
+<meta property="og:description" content="Dicas técnicas sobre veículos elétricos, escritas pela equipe da DestravaX.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://destravax.com/blog/">
+<meta property="og:image" content="https://destravax.com/logo.png">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQB9MCQGL4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HQB9MCQGL4');
+</script>
+
+<!-- Cal.com embed: agendamento embutido no site (sem sair pro cal.com) -->
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", { origin: "https://cal.com" });
+
+  Cal("on", {
+    action: "bookingSuccessful",
+    callback: function (e) {
+      if (typeof gtag === "function") {
+        gtag("event", "agendamento_concluido", {
+          event_category: "booking",
+          event_label: (e.detail && e.detail.data && e.detail.data.eventType) ? e.detail.data.eventType.slug : "desconhecido"
+        });
+      }
+      window.location.href = "/agendamento-confirmado";
+    }
+  });
+
+  Cal("ui", {
+    styles: { branding: { brandColor: "#FF4A0A" } },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="DestravaX — início">
+      <img src="/logo.png" alt="DestravaX — Destrave. Faça. Evolua.">
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links">
+      <a href="/#servicos">Serviços</a>
+      <a href="/#como-funciona">Como funciona</a>
+      <a href="/#contato">Contato</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+    <a class="nav-cta" href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico</a>
+  </div>
+</header>
+
+<section class="blog-hero">
+  <div class="wrap">
+    <span class="eyebrow">Blog</span>
+    <h1>Mobilidade elétrica, direto ao ponto.</h1>
+    <p class="lead" style="max-width:56ch;">Dicas técnicas, lançamentos e tudo que você precisa saber sobre patinetes, bikes, motos e carros elétricos — escrito pela equipe da DestravaX.</p>
+  </div>
+</section>
+
+<section class="block" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="blog-list">
+
+      <a class="post-card" href="/blog/sinais-bateria-chegando-ao-fim.html">
+        <span class="post-tag">Baterias de lítio</span>
+        <h2>7 sinais de que a bateria do seu equipamento elétrico está chegando ao fim</h2>
+        <p>Autonomia despencando, carga que não completa, desligamento no meio do uso, inchaço — os sinais de bateria desgastada que mais vemos na oficina, e qual deles exige parar de usar na hora.</p>
+        <span class="post-read">Ler artigo →</span>
+      </a>
+
+      <a class="post-card" href="/blog/checklist-seguranca-antes-de-sair.html">
+        <span class="post-tag">Segurança</span>
+        <h2>Checklist de segurança: o que checar antes de sair com seu equipamento elétrico</h2>
+        <p>Freio, pneu, bateria, direção — um checklist rápido de 2 minutos que evita boa parte dos acidentes e quebras que vemos na oficina.</p>
+        <span class="post-read">Ler artigo →</span>
+      </a>
+
+      <a class="post-card" href="/blog/patinete-eletrico-nao-liga.html">
+        <span class="post-tag">Patinetes elétricos</span>
+        <h2>Patinete elétrico não liga? Veja as causas mais comuns</h2>
+        <p>Da bateria descarregada ao fusível queimado — os motivos mais frequentes pra um patinete simplesmente não responder, e o que dá pra checar em casa antes de trazer pra oficina.</p>
+        <span class="post-read">Ler artigo →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 DestravaX. Diagnóstico técnico para veículos elétricos.</span>
+    <a href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico</a>
+  </div>
+</footer>
+
+
+<script>
+  (function(){
+    var toggle = document.querySelector('.nav-toggle');
+    var links = document.querySelector('.nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', function(){
+        var isOpen = links.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      links.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', function(){
+          links.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>

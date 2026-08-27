@@ -39,6 +39,57 @@
   gtag('js', new Date());
   gtag('config', 'G-HQB9MCQGL4');
 </script>
+
+<!-- Cal.com embed: agendamento embutido no site (sem sair pro cal.com) -->
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", { origin: "https://cal.com" });
+
+  Cal("on", {
+    action: "bookingSuccessful",
+    callback: function (e) {
+      if (typeof gtag === "function") {
+        gtag("event", "agendamento_concluido", {
+          event_category: "booking",
+          event_label: (e.detail && e.detail.data && e.detail.data.eventType) ? e.detail.data.eventType.slug : "desconhecido"
+        });
+      }
+      window.location.href = "/agendamento-confirmado";
+    }
+  });
+
+  Cal("ui", {
+    styles: { branding: { brandColor: "#FF4A0A" } },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
+</script>
 </head>
 <body>
 
@@ -56,7 +107,7 @@
       <a href="/#contato">Contato</a>
       <a href="/blog/">Blog</a>
     </nav>
-    <a class="nav-cta" href="https://cal.com/destravax" target="_blank" rel="noopener">Agendar diagnóstico</a>
+    <a class="nav-cta" href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico</a>
   </div>
 </header>
 
@@ -98,14 +149,14 @@
 
   <div class="article-cta">
     <p>Na DestravaX, testamos a bateria na bancada — tensão, capacidade real e equilíbrio das células — antes de qualquer orçamento. Vale pra patinete, bike, scooter e moto elétrica.</p>
-    <a class="btn-primary" href="https://cal.com/destravax/diagnostico-bateria-litio" target="_blank" rel="noopener">Agendar diagnóstico da minha bateria →</a>
+    <a class="btn-primary" href="javascript:void(0)" data-cal-link="destravax/diagnostico-bateria-litio" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico da minha bateria →</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot-row">
     <span>© 2026 DestravaX. Diagnóstico técnico para veículos elétricos.</span>
-    <a href="https://cal.com/destravax" target="_blank" rel="noopener">Agendar diagnóstico</a>
+    <a href="javascript:void(0)" data-cal-link="destravax" data-cal-config='{"layout":"month_view"}'>Agendar diagnóstico</a>
   </div>
 </footer>
 
