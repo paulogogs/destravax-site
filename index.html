@@ -117,6 +117,19 @@
     layout: "month_view"
   });
 </script>
+<!-- Conta cliques nos botões de WhatsApp como evento no GA4 (clique_whatsapp) -->
+<script>
+  document.addEventListener("click", function (ev) {
+    var link = ev.target.closest && ev.target.closest('a[href*="wa.me"]');
+    if (link && typeof gtag === "function") {
+      gtag("event", "clique_whatsapp", {
+        event_category: "contato",
+        event_label: link.closest("footer") ? "rodape" : "contato",
+        transport_type: "beacon"
+      });
+    }
+  });
+</script>
 </head>
 <body>
 
